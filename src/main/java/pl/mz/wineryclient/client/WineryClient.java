@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import pl.mz.wineryclient.model.WineDto;
 
+import java.net.URI;
 import java.util.UUID;
 
 @ConfigurationProperties(prefix = "api.winery", ignoreUnknownFields = false)
@@ -23,6 +24,16 @@ public class WineryClient {
     public WineDto getWineById(UUID uuid){
         return restTemplate.getForObject(apihost + WINE_PATH_V1 + uuid.toString(), WineDto.class);
     }
+
+    public URI saveNewWine(WineDto wineDto){
+        return restTemplate.postForLocation(apihost + WINE_PATH_V1, wineDto);
+    }
+
+    public void updateWine(UUID uuid, WineDto wineDto){
+        restTemplate.put(apihost + WINE_PATH_V1 + uuid.toString(), wineDto);
+    }
+
+    public void deleteWine(UUID uuid) { restTemplate.delete(apihost + WINE_PATH_V1 + uuid); }
 
     public void setApihost(String apihost) {
         this.apihost = apihost;
