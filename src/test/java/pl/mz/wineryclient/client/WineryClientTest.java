@@ -27,7 +27,6 @@ class WineryClientTest {
         WineDto wineDto = WineDto.builder().wineName("Merlot").build();
         URI uri = client.saveNewWine(wineDto);
         assertNotNull(uri);
-        System.out.println(uri.toString());
     }
 
     @Test

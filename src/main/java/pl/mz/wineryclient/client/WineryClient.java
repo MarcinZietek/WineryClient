@@ -30,7 +30,7 @@ public class WineryClient {
     }
 
     public void updateWine(UUID uuid, WineDto wineDto){
-        restTemplate.put(apihost + WINE_PATH_V1 + uuid.toString(), wineDto);
+        restTemplate.put(apihost + WINE_PATH_V1 + "/" + uuid.toString(), wineDto);
     }
 
     public void deleteWine(UUID uuid) { restTemplate.delete(apihost + WINE_PATH_V1 + uuid); }
